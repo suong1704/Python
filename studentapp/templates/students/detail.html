@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+{{form.as_p}}
+{% comment %} <h1>Hello, My name is {{student.name|capfirst|default:'World'}}</h1>
+<p>Code: {{student.code}}</p>
+<p>Address: {{student.address}}</p> {% endcomment %}
+{% endblock %}

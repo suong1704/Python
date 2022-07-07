@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{vehicle.name|capfirst|default:'Hello World!'}}</h1>
+<p>Code: {{vehicle.code}}</p>
+<p>Address: {{vehicle.model}}</p> {% endblock %}
+

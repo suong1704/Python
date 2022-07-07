@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class = 'form' method ='GET'>
+  <div class="row">
+      <div class="col-auto">
+          <input class="form-control" 
+              type="text"
+              name="keyword"
+              placeholder="Keyword"
+              value="{{ keyword | default:'' }}" />
+      </div>
+      <div class="col-auto">
+          <input type="submit" 
+              class="btn btn-primary" 
+              value="Search" />
+          <a href="{% url 'create' %}" class="btn btn-success" >Add</a>
+      </div>
+  </div>
+</form>
+<form class = 'form' method =''>{% csrf_token %}
+    {% comment %} <a href="/delete/<int:id>" class="btn btn-primary">Delete</a> {% endcomment %}
+    <table width='100%' border='1px solid black'> 
+      <tr >
+          <th >ID</th>
+          <th >Name</th>
+          <th >Age</th>
+          <th >Gender</th>
+          <th >Address</th>
+          <th >Email</th>
+          <th >Update</th>
+          <th >Delete</th>
+        </tr>
+        {% for student in students %}
+        <tr border='1px solid black'>
+            
+            <td >{{ student.code }}</td>
+            <td ><a href="{{student.get_absolute_url}}" >{{student.name}}</a></td>
+            <td >{{ student.age }}</td>
+            {% comment %} <td >{{ student.gender }}</td> {% endcomment %}
+            {% if student.gender == False%}
+                <td >Nữ</td>
+            {%else%}
+                <td >Nam</td>
+            {% endif %}
+            </td>
+            <td >{{ student.address }}</td>
+            <td >{{ student.email }}</td>
+            <td ><a href="{% url 'update' student.id %}" class="btn btn-primary">Update</a></td>
+            <td ><a href="{% url 'delete' student.id %}" class="btn btn-danger">Delete</a></td>
+            
+        </tr>
+        {% endfor %}
+      </table>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}  
+<h1>Hello {{name | title | default:'World'}}</h1>
+<p>My skills: {{skills}}!</p> 
+<ul>
+    {% for skill in skills %}
+    {% if skill == 'django' %}
+    <li>{{forloop.counter}} - Python django </li>
+    {% else %}
+    <li>{{forloop.counter}} - {{skill}}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+<p>This is home template</p>
+{% endblock %}
